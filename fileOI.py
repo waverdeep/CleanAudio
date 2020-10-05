@@ -17,12 +17,12 @@ def save_audio_file(filename,  data, extension='', sample_rate=16000, subtype='P
         sf.write(filename, data, samplerate=sample_rate, subtype=subtype)
 
 
-def read_audio_file(filename, extension, duration=1.0, sample_rate=16000):
+def read_audio_file(filename, extension, sample_rate=16000):
     if extension is not '':
-        y, sr = librosa.load('{}.{}'.format(filename, extension), sr=sample_rate, duration=duration)
+        y, sr = librosa.load('{}.{}'.format(filename, extension), sr=sample_rate)
         return y, sr
     else:
-        y, sr = librosa.load(filename, sr=sample_rate, duration=duration)
+        y, sr = librosa.load(filename, sr=sample_rate)
         return y, sr
 
 

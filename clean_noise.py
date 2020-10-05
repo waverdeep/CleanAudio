@@ -4,7 +4,6 @@ import scipy.io
 import librosa
 
 
-
 def noise_reduction(signals):
     return scipy.signal.wiener(signals)
 
