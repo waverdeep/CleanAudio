@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" autoUpload="Always" serverName="2020-2RD01" autoUploadExternalChanges="true">
+    <serverData>
+      <paths name="2020-2RD01">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/data/CleanAudio" local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+    <option name="myAutoUpload" value="ALWAYS" />
+  </component>
+</project>
