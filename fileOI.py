@@ -10,7 +10,7 @@ def get_all_file_path(input_dir, file_extension):
     return temp
 
 
-def save_audio_file(filename,  data, extension='', sample_rate=16000, subtype='PCM_24'):
+def save_audio_file(filename,  data, extension='', sample_rate=16000, subtype='PCM_16'):
     if extension is not '':
         sf.write('{}.{}'.format(filename, extension), data, samplerate=sample_rate, subtype=subtype)
     else:
