@@ -6,7 +6,6 @@ import librosa
 
 # 성능이 별로 좋지 않은듯 하다.
 # https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.wiener.html
-
 # 이것을 적용해보아도 좋을 듯 함
 # https://github.com/dodiku/noise_reduction
 def noise_reduction(signals):
