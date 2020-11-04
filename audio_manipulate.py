@@ -1,5 +1,6 @@
 import librosa
 import itertools
+import fileOI
 
 
 # top_db를 기준으로 음원을 여러 구간으로 자르는 함수
@@ -17,11 +18,23 @@ def split_audio(source, top_db=15, sr=16000):
             sections.append(i)
             break
     for i in temp:
+        if 15 <= i / 16000:
+            sections.append(i)
+            break
+    for i in temp:
         if 20 <= i/16000:
             sections.append(i)
             break
     for i in temp:
+        if 25 <= i/16000:
+            sections.append(i)
+            break
+    for i in temp:
         if 30 <= i/16000:
+            sections.append(i)
+            break
+    for i in temp:
+        if 35 <= i/16000:
             sections.append(i)
             break
     sections.append(len(source))
@@ -34,12 +47,25 @@ def get_2gram(sections):
     temp = []
     for i in range(len(sections)-1):
         temp.append([sections[i],sections[i+1]])
-    print(temp)
+    return temp
 
 
-def split_source_to_wav(source, sections, sr=16000):
-    get_2gram(sections)
+def split_source_to_wav(source, sections, root_filepath, split_filepath, sr=16000):
+    sections = remove_overlap_items(sections)
+    partition = get_2gram(sections)
+    pure_filename = fileOI.get_pure_filename(root_filepath)
+    for idx, data in enumerate(partition):
+        part = source[data[0]:data[1]]
+        filepath = '{}/{}-{}.wav'.format(split_filepath, pure_filename, idx)
+        fileOI.save_audio_file(filepath, part, '')
 
+
+def remove_overlap_items(sections):
+    new_list = []
+    for v in sections:
+        if v not in new_list:
+            new_list.append(v)
+    return new_list
 
 
 
