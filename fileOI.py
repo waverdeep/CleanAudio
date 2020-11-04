@@ -1,3 +1,4 @@
+import errno
 import os
 import glob
 import soundfile as sf
@@ -11,10 +12,24 @@ def get_all_file_path(input_dir, file_extension):
 
 
 def save_audio_file(filename,  data, extension='', sample_rate=16000, subtype='PCM_16'):
+    pure_filepath = get_pure_filepath(filename)
+    try:
+        if not (os.path.isdir(pure_filepath)):
+            os.makedirs(os.path.join(pure_filepath))
+    except OSError as e:
+        if e.errno != errno.EEXIST:
+            print("Failed to create directory!!!!!")
+            raise
+
     if extension is not '':
         sf.write('{}.{}'.format(filename, extension), data, samplerate=sample_rate, subtype=subtype)
     else:
         sf.write(filename, data, samplerate=sample_rate, subtype=subtype)
+
+
+def create_file(filepath):
+    f = open(filepath, 'w', encoding='utf8')
+    return f
 
 
 def read_audio_file(filename, extension, sample_rate=16000):
