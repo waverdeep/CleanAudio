@@ -16,8 +16,14 @@ dataset = fileOI.get_all_file_path('./sample_dataset2', 'wav')
 #
 #     fileOI.save_audio_file('{}/{}-{}'.format(filepath, filename, 'tr'), clean_data, 'wav')
 
-print(dataset[0])
-source, sr = fileOI.read_audio_file(dataset[17], '')
-sections = audio_manipulate.split_audio(source)
-audio_manipulate.split_source_to_wav(source=source, sections=sections, root_filepath=dataset[7],
-                                     split_filepath='./split_wav')
+for idx, i in enumerate(dataset):
+    print(idx, i)
+    source, sr = fileOI.read_audio_file(i, '')
+    sections = audio_manipulate.split_audio(source)
+    audio_manipulate.split_source_to_wav(source=source, sections=sections, root_filepath=i,
+                                         split_filepath='./split_wav')
+
+# source, sr = fileOI.read_audio_file(dataset[8], '')
+# sections = audio_manipulate.split_audio(source)
+# audio_manipulate.split_source_to_wav(source=source, sections=sections, root_filepath=dataset[8],
+#                                      split_filepath='./split_wav')
